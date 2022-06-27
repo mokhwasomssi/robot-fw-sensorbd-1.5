@@ -1,0 +1,3 @@
+../Core/Src/apps/msgs.c:22:6:msgs_clear_msg	4	static
+../Core/Src/apps/msgs.c:31:6:msgs_set_msg	24	static
+../Core/Src/apps/msgs.c:48:6:msgs_get_msg	24	static

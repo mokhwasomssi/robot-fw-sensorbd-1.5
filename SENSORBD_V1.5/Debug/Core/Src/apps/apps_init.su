@@ -1,0 +1,5 @@
+../Core/Src/apps/apps_init.c:32:6:init_apps_init_app	8	static
+../Core/Src/apps/apps_init.c:42:13:default_global_volatile	4	static
+../Core/Src/apps/apps_init.c:57:13:start	16	static
+../Core/Src/apps/apps_init.c:111:13:stop	4	static
+../Core/Src/apps/apps_init.c:120:13:on_msg	24	static

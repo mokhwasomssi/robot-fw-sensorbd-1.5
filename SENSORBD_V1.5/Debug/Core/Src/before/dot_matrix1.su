@@ -1,0 +1,10 @@
+../Core/Src/before/dot_matrix1.c:116:13:SPI1_TX_Byte	16	static
+../Core/Src/before/dot_matrix1.c:122:13:SS1_ENABLE	16	static
+../Core/Src/before/dot_matrix1.c:129:13:SS1_DISABLE	16	static
+../Core/Src/before/dot_matrix1.c:135:13:TxByte1	16	static
+../Core/Src/before/dot_matrix1.c:146:6:DOT_MATRIX1_Init	16	static
+../Core/Src/before/dot_matrix1.c:196:6:MATRIX1_CLEAR	24	static
+../Core/Src/before/dot_matrix1.c:210:6:MATRIX1_Write_Char	24	static
+../Core/Src/before/dot_matrix1.c:224:6:MATRIX1_Write_SAMSUNG	24	static
+../Core/Src/before/dot_matrix1.c:245:6:MATRIX1_Write_Clab	24	static
+../Core/Src/before/dot_matrix1.c:265:6:MATRIX1_Write_CLab	24	static

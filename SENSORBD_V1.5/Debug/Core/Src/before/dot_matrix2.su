@@ -1,0 +1,8 @@
+../Core/Src/before/dot_matrix2.c:77:13:SPI2_TX_Byte	16	static
+../Core/Src/before/dot_matrix2.c:83:13:SS2_ENABLE	16	static
+../Core/Src/before/dot_matrix2.c:91:13:SS2_DISABLE	16	static
+../Core/Src/before/dot_matrix2.c:97:13:TxByte2	16	static
+../Core/Src/before/dot_matrix2.c:108:6:DOT_MATRIX2_Init	16	static
+../Core/Src/before/dot_matrix2.c:154:6:MATRIX2_CLEAR	24	static
+../Core/Src/before/dot_matrix2.c:168:6:MATRIX2_Write_Char	24	static
+../Core/Src/before/dot_matrix2.c:183:6:MATRIX2_Write_SR	24	static

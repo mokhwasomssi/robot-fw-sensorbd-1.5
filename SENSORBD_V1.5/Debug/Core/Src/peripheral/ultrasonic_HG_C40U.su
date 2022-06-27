@@ -1,0 +1,2 @@
+../Core/Src/peripheral/ultrasonic_HG_C40U.c:31:6:init_ultrasonic_hg_c40u	8	static
+../Core/Src/peripheral/ultrasonic_HG_C40U.c:78:6:p_ultrasonic_task	24	static

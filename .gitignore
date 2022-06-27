@@ -1,0 +1,13 @@
+## file ignore 
+RNB_SENB_V2_ONE Debug.launch
+## extention ignore 
+.cproject
+.mxproject
+.project
+.launch
+
+## folder ignore
+.settings/
+Drivers/
+/Debug/
+.metadata

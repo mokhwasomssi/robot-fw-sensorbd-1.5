@@ -1,0 +1,2 @@
+../Core/Src/peripheral/uart_test.c:28:6:init_p_uart_test	8	static
+../Core/Src/peripheral/uart_test.c:36:6:p_uart_test_task	24	static
