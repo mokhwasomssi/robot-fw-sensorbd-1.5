@@ -161,17 +161,17 @@ void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 	if (htim->Instance==TIM1 && htim->Channel==HAL_TIM_ACTIVE_CHANNEL_1)
 	{
 		HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_1);
-		beltdatasentflag=1;
+		gv.beltdatasentflag=1;
 	}
 	if (htim->Instance==TIM1 && htim->Channel==HAL_TIM_ACTIVE_CHANNEL_2)
 	{
 		HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_2);
-		ring1datasentflag=1;
+		gv.ring1datasentflag=1;
 	}
 	if (htim->Instance==TIM1 && htim->Channel==HAL_TIM_ACTIVE_CHANNEL_3)
 	{
 		HAL_TIM_PWM_Stop_DMA(&htim1, TIM_CHANNEL_3);
-		ring2datasentflag=1;
+		gv.ring2datasentflag=1;
 	}
 
 }
@@ -200,6 +200,7 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
+  MX_DMA_Init(); // must init here
 
   /* USER CODE END SysInit */
 
@@ -515,7 +516,7 @@ static void MX_TIM13_Init(void)
   htim13.Instance = TIM13;
   htim13.Init.Prescaler = 83;
   htim13.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim13.Init.Period = 9999;
+  htim13.Init.Period = 999;
   htim13.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim13.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim13) != HAL_OK)

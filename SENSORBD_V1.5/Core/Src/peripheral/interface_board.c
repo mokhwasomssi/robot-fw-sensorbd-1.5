@@ -7,10 +7,18 @@
 
 #include "app_sensorboard.h"
 
-extern osMessageQueueId_t queue_interfaceBDHandle;
-extern osMessageQueueId_t queue_debug_testHandle;
+#define MAX_PACKET_LENGTH ( 22 )
 
-uint8_t TX_PACKET_B2B[256];
+#define PID_S2L_CONTROL (11)
+#define PID_E2S_SENSOR_DATA	(12)
+#define INTERFACE_HEADER_1 ( 0xFF )
+#define INTERFACE_HEADER_2 ( 0xFF )
+#define INTERFACE_MID ( 0x0B )
+
+uint8_t TX_PACKET_B2B[30];
+
+extern osMessageQueueId_t queue_interfaceBDHandle;
+
 /**
 ********************************************************************************************************************************
 ********************************************************************************************************************************
@@ -19,8 +27,18 @@ void init_p_interfaceboard(void)
 {
 	Uart_Init_Custom(&huart4);
 	osThreadResume (p_interfaceBDHandle);
+
+	TX_PACKET_B2B[0] = 0xFF;
+	TX_PACKET_B2B[1] = 0xFF;
+	TX_PACKET_B2B[2] = 0x0A;
+	TX_PACKET_B2B[3] = PID_E2S_SENSOR_DATA;
 }
 
+
+/**
+********************************************************************************************************************************
+********************************************************************************************************************************
+*/
 uint8_t B2BChksumMake(uint8_t* _data, uint8_t _len)
 {
 	uint8_t chksum = 0;
@@ -34,8 +52,32 @@ uint8_t B2BChksumMake(uint8_t* _data, uint8_t _len)
 
 	return chksum;
 }
+/**
+********************************************************************************************************************************
+********************************************************************************************************************************
+*/
+bool RosChksumChk(uint8_t* Data)
+{
+	uint8_t sum = 0;
+	uint8_t len = Data[4] + 5 - 1; // len + 5 - 1
+
+	if(Data[4] == 0) return false;
 
 
+	for	(int i=0 ;i < len; i++)
+		sum += Data[i];
+	if( ((sum + Data[len]) & 0x00FF) == 0)
+		return true;
+	else
+		return false;
+}
+
+
+static bool start_parsing = true;
+static uint32_t execute_idx = 0;
+static uint8_t buf[MAX_PACKET_LENGTH];
+static uint8_t buffer_len = 0;
+static uint8_t data_seq = 0;
 void p_interfaceBD_task(void *argument)
 {
 	//uint8_t data_seq = 0;
@@ -46,37 +88,45 @@ void p_interfaceBD_task(void *argument)
 	{
 		if(osMessageQueueGet(queue_interfaceBDHandle, &data, NULL, 10) == osOK)
 		{
-			// B2B Read Process..... to do ....
-//			if(data == HGC40_HEADER_1) data_seq1 = 1; // HEADER1
-//			else if((data_seq1 == 1) && (data == HGC40_HEADER_2))
-//			{
-//				data_seq1 = 2; // HEADER2
-//				rx_buf1_len = 0;
-//				memset(rx_buf1, 0x00, 10);
-//			}
-//			else if(data_seq1 == 2)
-//			{
-//				if(data == HGC40_TAIL)
-//				{
-//					if(rx_buf1_len < 6) sensor1.m_fail_cnt = 0;
-//					if(rx_buf1_len == 4)
-//						gv.ultrasonic_1 = (rx_buf1[0] - '0') * 1000
-//									+ (rx_buf1[1] - '0') * 100
-//									+ (rx_buf1[2] - '0') * 10
-//									+ (rx_buf1[3] - '0');
-//					else if(rx_buf1_len == 3)
-//						gv.ultrasonic_1 = (rx_buf1[0] - '0') * 100
-//									+ (rx_buf1[1] - '0') * 10
-//									+ (rx_buf1[2] - '0');
-//					else if(rx_buf1_len == 2)
-//						gv.ultrasonic_1 = (rx_buf1[0] - '0') * 10
-//									+ (rx_buf1[1] - '0');
-//					else if(rx_buf1_len == 1)
-//						gv.ultrasonic_1 = (rx_buf1[0] - '0');
-//					else gv.ultrasonic_1 = 9999;
-//				}
-//				else rx_buf1[rx_buf1_len++] = data;
-//			}
+			if(start_parsing == true)
+			{
+				if((data_seq == 0) && data == INTERFACE_HEADER_1) data_seq = 1; // HEADER1
+				if((data_seq == 1) && (data == INTERFACE_HEADER_2)) data_seq = 2; // HEADER2
+				if((data_seq == 2) && (data == INTERFACE_MID)) // MID
+				{
+					// Start
+					data_seq = 0;
+					buffer_len = 0;
+					start_parsing = false;
+					memset(buf,0x00,MAX_PACKET_LENGTH);
+					buf[buffer_len++] = INTERFACE_HEADER_1;
+					buf[buffer_len++] = INTERFACE_HEADER_2;
+					buf[buffer_len++] = INTERFACE_MID;
+				}
+			}
+			else buf[buffer_len++] = data;
+
+			if((buffer_len >= (buf[4]+5)) && (buf[4] > 2) && (start_parsing == false))
+			{
+				if(RosChksumChk(buf))
+				{
+					switch(buf[3]) // pid
+					{
+						case PID_S2L_CONTROL : LED_Control_Set(buf[5],buf[6], buf[7]); break;
+						default : printf("%s\r\n",buf); break;
+					}
+				}
+				buffer_len = 0;
+				start_parsing = true;
+				memset(buf,0x00,MAX_PACKET_LENGTH);
+			}
+
+			if(buffer_len > MAX_PACKET_LENGTH)
+			{
+				buffer_len = 0;
+				start_parsing = true;
+				memset(buf,0x00,MAX_PACKET_LENGTH);
+			}
 		}
 		else
 		{

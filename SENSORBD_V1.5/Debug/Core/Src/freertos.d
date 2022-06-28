@@ -44,10 +44,9 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Core/Src/apps/apps_init.h ../Core/Src/apps/msgs.h \
  ../Core/Src/peripheral/interface_board.h \
  ../Core/Src/peripheral/ultrasonic_HG_C40U.h \
- ../Core/Src/peripheral/uart_test.h ../Core/Src/u_timer.h \
- ../Core/Src/_typedef.h ../Core/Src/u_strings.h \
- ../Core/Src/apps/../_typedef.h ../Core/Src/u_bsp_driver.h \
- ../Core/Src/before/led_control.h ../Core/Src/before/DOT_MATRIX1.h \
+ ../Core/Src/peripheral/uart_test.h ../Core/Src/util/u_timer.h \
+ ../Core/Src/util/u_strings.h ../Core/Src/util/../_typedef.h \
+ ../Core/Src/util/u_bsp_driver.h ../Core/Src/before/DOT_MATRIX1.h \
  ../Core/Src/before/DOT_MATRIX0.h ../Core/Src/before/DOT_MATRIX2.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
@@ -98,12 +97,10 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Src/peripheral/interface_board.h:
 ../Core/Src/peripheral/ultrasonic_HG_C40U.h:
 ../Core/Src/peripheral/uart_test.h:
-../Core/Src/u_timer.h:
-../Core/Src/_typedef.h:
-../Core/Src/u_strings.h:
-../Core/Src/apps/../_typedef.h:
-../Core/Src/u_bsp_driver.h:
-../Core/Src/before/led_control.h:
+../Core/Src/util/u_timer.h:
+../Core/Src/util/u_strings.h:
+../Core/Src/util/../_typedef.h:
+../Core/Src/util/u_bsp_driver.h:
 ../Core/Src/before/DOT_MATRIX1.h:
 ../Core/Src/before/DOT_MATRIX0.h:
 ../Core/Src/before/DOT_MATRIX2.h:

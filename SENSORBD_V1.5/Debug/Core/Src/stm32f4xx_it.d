@@ -44,10 +44,9 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Core/Src/apps/apps_init.h ../Core/Src/apps/msgs.h \
  ../Core/Src/peripheral/interface_board.h \
  ../Core/Src/peripheral/ultrasonic_HG_C40U.h \
- ../Core/Src/peripheral/uart_test.h ../Core/Src/u_timer.h \
- ../Core/Src/_typedef.h ../Core/Src/u_strings.h \
- ../Core/Src/apps/../_typedef.h ../Core/Src/u_bsp_driver.h \
- ../Core/Src/before/led_control.h ../Core/Src/before/DOT_MATRIX1.h \
+ ../Core/Src/peripheral/uart_test.h ../Core/Src/util/u_timer.h \
+ ../Core/Src/util/u_strings.h ../Core/Src/util/../_typedef.h \
+ ../Core/Src/util/u_bsp_driver.h ../Core/Src/before/DOT_MATRIX1.h \
  ../Core/Src/before/DOT_MATRIX0.h ../Core/Src/before/DOT_MATRIX2.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -99,12 +98,10 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 ../Core/Src/peripheral/interface_board.h:
 ../Core/Src/peripheral/ultrasonic_HG_C40U.h:
 ../Core/Src/peripheral/uart_test.h:
-../Core/Src/u_timer.h:
-../Core/Src/_typedef.h:
-../Core/Src/u_strings.h:
-../Core/Src/apps/../_typedef.h:
-../Core/Src/u_bsp_driver.h:
-../Core/Src/before/led_control.h:
+../Core/Src/util/u_timer.h:
+../Core/Src/util/u_strings.h:
+../Core/Src/util/../_typedef.h:
+../Core/Src/util/u_bsp_driver.h:
 ../Core/Src/before/DOT_MATRIX1.h:
 ../Core/Src/before/DOT_MATRIX0.h:
 ../Core/Src/before/DOT_MATRIX2.h:

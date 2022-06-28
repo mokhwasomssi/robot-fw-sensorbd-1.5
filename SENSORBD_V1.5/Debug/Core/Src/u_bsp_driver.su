@@ -1,2 +1,0 @@
-../Core/Src/u_bsp_driver.c:11:6:Uart_Init_Custom	16	static
-../Core/Src/u_bsp_driver.c:23:6:Uart_Reinit	16	static

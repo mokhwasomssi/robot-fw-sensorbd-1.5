@@ -11,7 +11,8 @@
 
 #include "_typedef.h"
 
-#define UTIL_TIMER_TICK   (10) /*1ms*/
+#define UTIL_TIMER_TICK   (1) /*1ms*/
+#define UTIL_TIMER_1ms   ((u32)(UTIL_TIMER_TICK))
 #define UTIL_TIMER_10ms   ((u32)(10/UTIL_TIMER_TICK))
 #define UTIL_TIMER_50ms   ((u32)(50/UTIL_TIMER_TICK))
 #define UTIL_TIMER_100ms  ((u32)(100/UTIL_TIMER_TICK))

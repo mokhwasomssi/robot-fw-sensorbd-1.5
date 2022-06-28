@@ -31,7 +31,6 @@
 #include "u_strings.h"
 #include "u_bsp_driver.h"
 // before
-#include "led_control.h"
 #include "DOT_MATRIX1.h"
 #include "DOT_MATRIX2.h"
 
@@ -62,12 +61,21 @@ typedef struct
 
 typedef struct
 {
-	bool testmode;
 	bool debug_mode;
 	uint16_t ultrasonic_1;
 	uint16_t ultrasonic_2;
-	//
 
+	// LED Current state
+	uint8_t LED_EYE_Status;
+	uint8_t LED_EYE_Action;
+	uint8_t LED_Belt_Status;
+	uint8_t LED_Belt_Action;
+	uint8_t LED_Front_Status;
+	uint8_t LED_Front_Action;
+
+	uint8_t beltdatasentflag;
+	uint8_t ring1datasentflag;
+	uint8_t ring2datasentflag;
 } global_volatile_t;
 
 extern global_volatile_t gv;

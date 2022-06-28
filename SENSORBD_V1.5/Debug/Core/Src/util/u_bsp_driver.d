@@ -1,5 +1,4 @@
-Core/Src/peripheral/interface_board.o: \
- ../Core/Src/peripheral/interface_board.c \
+Core/Src/util/u_bsp_driver.o: ../Core/Src/util/u_bsp_driver.c \
  ../Core/Src/apps/app_sensorboard.h ../Core/Src/apps/_app_config.h \
  ../Core/Src/_typedef.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
@@ -48,7 +47,8 @@ Core/Src/peripheral/interface_board.o: \
  ../Core/Src/peripheral/uart_test.h ../Core/Src/util/u_timer.h \
  ../Core/Src/util/u_strings.h ../Core/Src/util/../_typedef.h \
  ../Core/Src/util/u_bsp_driver.h ../Core/Src/before/DOT_MATRIX1.h \
- ../Core/Src/before/DOT_MATRIX0.h ../Core/Src/before/DOT_MATRIX2.h
+ ../Core/Src/before/DOT_MATRIX0.h ../Core/Src/before/DOT_MATRIX2.h \
+ ../Core/Src/util/u_bsp_driver.h
 ../Core/Src/apps/app_sensorboard.h:
 ../Core/Src/apps/_app_config.h:
 ../Core/Src/_typedef.h:
@@ -105,3 +105,4 @@ Core/Src/peripheral/interface_board.o: \
 ../Core/Src/before/DOT_MATRIX1.h:
 ../Core/Src/before/DOT_MATRIX0.h:
 ../Core/Src/before/DOT_MATRIX2.h:
+../Core/Src/util/u_bsp_driver.h:
