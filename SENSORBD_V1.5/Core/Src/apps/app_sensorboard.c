@@ -1072,6 +1072,8 @@ void init_pwm_leds(void)
 	LED_Control_Set(LEDCATEGORYBELT,3, 0);
 	LED_Control_Set(LEDCATEGORYHEAD,1, 0);
 
+	Set_Belt_Action(gv.LED_Belt_Action);
+
 
 }
 

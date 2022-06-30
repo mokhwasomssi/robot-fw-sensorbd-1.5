@@ -7,6 +7,8 @@
 
 #include "app_sensorboard.h"
 
+#define UART_INTERFACBD ( &huart4 )
+
 #define MAX_PACKET_LENGTH ( 22 )
 
 #define PID_S2L_CONTROL (11)
@@ -25,7 +27,7 @@ extern osMessageQueueId_t queue_interfaceBDHandle;
 */
 void init_p_interfaceboard(void)
 {
-	Uart_Init_Custom(&huart4);
+	Uart_Init_Custom(UART_INTERFACBD);
 	osThreadResume (p_interfaceBDHandle);
 
 	TX_PACKET_B2B[0] = 0xFF;
@@ -161,7 +163,7 @@ void p_interfaceBD_task(void *argument)
 				TX_PACKET_B2B[12] = (uint8_t)(((gv.ultrasonic_2 / 10 ) & 0xFF00) >> 8);
 			}
 			TX_PACKET_B2B[13] = B2BChksumMake(TX_PACKET_B2B, 13);
-			HAL_UART_Transmit(&huart3, TX_PACKET_B2B, 14, 100);
+			HAL_UART_Transmit(UART_INTERFACBD, TX_PACKET_B2B, 14, 100);
 			osDelay(100);
 		}
 
