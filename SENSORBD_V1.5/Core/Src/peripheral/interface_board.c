@@ -148,9 +148,9 @@ void p_interfaceBD_task(void *argument)
 			TX_PACKET_B2B[8] = 0x00;
 
 			TX_PACKET_B2B[9] = 0xDE;
-			TX_PACKET_B2B[10] = 0xDE;
+			TX_PACKET_B2B[10] = 0xAD;
 			TX_PACKET_B2B[11] = 0xDE;
-			TX_PACKET_B2B[12] = 0xDE;
+			TX_PACKET_B2B[12] = 0xAD;
 			if(gv.ultrasonic_1 != 9999)
 			{
 				TX_PACKET_B2B[9] = (uint8_t)((gv.ultrasonic_1 / 10 ) & 0x00FF);
