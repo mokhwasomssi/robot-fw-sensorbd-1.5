@@ -1184,7 +1184,7 @@ static void apps_timer_1ms(s8 timer_id, u32 param1)
 }
 static void apps_timer_100ms(s8 timer_id, u32 param1)
 {
-	DBG_MSG("ULTRA[%04d][%04d]\r\n",gv.ultrasonic_1,gv.ultrasonic_2);
+	//DBG_MSG("apps_timer_100ms\r\n");
 }
 
 /**
@@ -1193,7 +1193,7 @@ static void apps_timer_100ms(s8 timer_id, u32 param1)
 */
 static void apps_timer_1s(s8 timer_id, u32 param1)
 {
-	//DBG_MSG("apps_timer_1s\r\n");
+	printf("ULTRA[%04d][%04d]\r\n",gv.ultrasonic_1,gv.ultrasonic_2);
 }
 /**
 ********************************************************************************************************************************

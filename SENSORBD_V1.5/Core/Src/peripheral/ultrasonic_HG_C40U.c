@@ -159,13 +159,26 @@ void p_ultrasonic_task(void *argument)
 			{
 				HAL_UART_Transmit(&huart2, TX_PACKET_HGC40U_Trigger, 10, 10);
 				sensor1.m_fail_cnt++;
-				if(sensor1.m_fail_cnt > 5 ) gv.ultrasonic_1 = 9999;
+				if(sensor1.m_fail_cnt > 3 )
+				{
+					HAL_UART_DeInit(&huart2);
+					HAL_UART_Init(&huart2);
+					Uart_Init_Custom(&huart2);
+					gv.ultrasonic_1 = 9999;
+				}
 			}
 			else
 			{
 				HAL_UART_Transmit(&huart3, TX_PACKET_HGC40U_Trigger, 10, 10);
 				sensor2.m_fail_cnt++;
-				if(sensor2.m_fail_cnt > 5 ) gv.ultrasonic_2 = 9999;
+				if(sensor2.m_fail_cnt > 3 )
+				{
+					HAL_UART_DeInit(&huart3);
+					HAL_UART_Init(&huart3);
+					Uart_Init_Custom(&huart3);
+					gv.ultrasonic_2 = 9999;
+
+				}
 			}
 			sensor_idx++;
 			if(sensor_idx > 1) sensor_idx = 0;
