@@ -852,16 +852,24 @@ void Set_Belt_Color( uint8_t belt_color )
 		default : beltRGB = GetColorCode(COLORDEFAULT); break;
 	}
 }
-
+static uint16_t stop_idx = 0;
 void Set_Belt_Action( uint8_t belt_action )
 {
 	switch(belt_action)
 	{
 		case 0 : //STOP
+			stop_idx++;
+			if(stop_idx > 1000) // set interval 1sec
+			{
+				stop_idx = 0;
+				Belt_Allset_LED(beltRGB);
+				WS2812_Send(LED_BELT);
+			}
 			if(prev_belt_action != belt_action )
 			{
 				prev_belt_action = belt_action;
 				belt_action_cnt = 0;
+				stop_idx = 0;
 				Belt_Allset_LED(beltRGB);
 				WS2812_Send(LED_BELT);
 			}

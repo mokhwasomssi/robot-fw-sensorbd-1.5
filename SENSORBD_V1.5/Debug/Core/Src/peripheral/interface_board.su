@@ -1,0 +1,4 @@
+../Core/Src/peripheral/interface_board.c:28:6:init_p_interfaceboard	8	static
+../Core/Src/peripheral/interface_board.c:44:9:B2BChksumMake	24	static
+../Core/Src/peripheral/interface_board.c:61:6:RosChksumChk	32	static
+../Core/Src/peripheral/interface_board.c:83:6:p_interfaceBD_task	24	static
